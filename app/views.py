@@ -1,10 +1,12 @@
-from flask import render_template, request, jsonify
+from flask import render_template, request, jsonify, url_for, redirect
 from app import app, bchain
 from uuid import uuid4
 
 blockclass=bchain.Blockchain()
-@app.route('/', methods=["GET"])
-def index():
+@app.route('/')
+@app.route('/dashboard')
+def dashboard():
+    blockclass.replace_chain()
     length=len(blockclass.chain)
     pre_block = blockclass.get_previous_block()
     pre_hash = pre_block["previous_hash"]
@@ -18,24 +20,19 @@ def index():
 def get_chain():
     response = {'chain': blockclass.chain,
                 'length': len(blockclass.chain)}
-    return jsonify(response), 200
+    return jsonify(response)
 
 
 @app.route('/mine_block', methods=['GET'])
 def mine_block():
+    blockclass.replace_chain()
     previous_block = blockclass.get_previous_block()
     previous_proof = previous_block['proof']
     proof = blockclass.proof_of_work(previous_proof)
     previous_hash = blockclass.hash(previous_block)
 
-    block = blockclass.create_block(proof, previous_hash)
-    response = {'message': 'Congratulations, you just mined a block!',
-                'index': block['index'],
-                'timestamp': block['timestamp'],
-                'proof': block['proof'],
-                'previous_hash': block['previous_hash'],
-                'transactions': block['transactions']}
-    return jsonify(response), 200
+    blockclass.create_block(proof, previous_hash)
+    return redirect(url_for('dashboard'))
 
 
 @app.route('/is_valid', methods=['GET'])
@@ -46,7 +43,7 @@ def is_valid():
     else:
         response = {
             'message': 'Houston, we have a problem. The Blockchain is not valid.'}
-    return jsonify(response), 200
+    return jsonify(response)
 
 
 @app.route('/sign')
@@ -60,9 +57,8 @@ def sign_up():
     email = request.form.get('email')
     phone = request.form.get('phone')
     user_id = str(uuid4()).replace('-', '')
-    index = blockclass.sign_up(user_id, name, address, email, phone)
-    response = {'message': f'Your details will be added to Block {index}'}
-    return jsonify(response), 201
+    blockclass.sign_up(user_id, name, address, email, phone)
+    return redirect(url_for('mine_block'))
 
 
 @app.route('/product')
@@ -75,9 +71,8 @@ def product_id():
     amount = request.form.get('amount')
     quantity = request.form.get('quantity')
     product_id = str(uuid4()).replace('-', '')
-    index = blockclass.product_id(product_id, product_name, amount, quantity)
-    response = {'message': f'The product details will be added to Block{index}'}
-    return jsonify(response), 201
+    blockclass.product_id(product_id, product_name, amount, quantity)
+    return redirect(url_for('mine_block'))
 
 
 @app.route('/status')
@@ -89,9 +84,8 @@ def add_status():
     courier_id = request.form.get('courier')
     current_location = request.form.get('location')
     status = request.form.get('status')
-    index = blockclass.add_status(courier_id, current_location, status)
-    response = {'message': f'This transaction will be added to Block {index}'}
-    return jsonify(response), 201
+    blockclass.add_status(courier_id, current_location, status)
+    return redirect(url_for('mine_block'))
 
 
 @app.route('/courier')
@@ -104,7 +98,47 @@ def courier_id():
     receiver_id = request.form.get('receiver')
     product_id = request.form.get('product')
     shipment_id = str(uuid4()).replace('-', '')
-    index = blockclass.coureir_id(shipment_id, sender_id, receiver_id, product_id)
-    response = {
-        'message': f'The Courier details will be added to the block{index}'}
-    return jsonify(response), 200
+    blockclass.coureir_id(shipment_id, sender_id, receiver_id, product_id)
+    return redirect(url_for('mine_block'))
+
+@app.route('/connect_node')
+def connect():
+    return render_template("connect.html")
+
+@app.route('/connect_node', methods=['POST'])
+def connect_node():
+    json = {
+        "nodes": [
+            "http://127.0.0.1:5001"
+        ]
+    }
+    nodes = json.get('nodes')
+    if nodes is None:
+        return "No node"
+    for node in nodes:
+        blockclass.add_node(node)
+    return redirect(url_for('dashboard'))
+
+
+@app.route('/update_chain')
+def update_chain():
+    blockclass.replace_chain()
+    return redirect(url_for('dashboard'))
+
+
+@app.route('/search_data')
+def search():
+    return render_template('search.html')
+
+@app.route('/search_data', methods=["POST"])
+def search_data():
+    blockclass.replace_chain()
+    name = request.form.get('name')
+    pre_block = blockclass.search_block('name')
+    user_id = pre_block["transactions"][0]["user_id"]
+    name = pre_block["transactions"][0]["name"]
+    address = pre_block["transactions"][0]["address"]
+    email = pre_block["transactions"][0]["email"]
+    phone = pre_block["transactions"][0]["phone"]
+
+    return render_template("detail.html", user_id=user_id, name=name, address=address, email=email, phone=phone)
