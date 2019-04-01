@@ -1,65 +1,168 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
+
 <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">  <meta charset="utf-8">
-  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Collapsible sidebar using Bootstrap 3</title>
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+
+  
 </head>
+
 <body>
-  <div class="col-md-2"></div>
-  <div class="col-md-8">
-    <form class="form-horizontal" method="POST" action="">
-      <fieldset>
 
-        <!-- Form Name -->
-        <legend >Sign Up</legend>
 
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="name">Name</label>
-          <div class="col-md-4">
-            <input id="name" name="name" type="text" placeholder="Enter your name" class="form-control input-md" required="">
 
+  <div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h1>Menu</h1>
+      </div>
+
+      <ul class="list-unstyled components">
+          <li>
+              <a href="{{ url_for('dashboard') }}"><h4>Dashboard</h4></a>
+          </li>
+          <li>
+              <a href="{{ url_for('sign') }}"><h4>Sign Up</h4></a>
+          </li>
+          <li>
+              <a href="{{ url_for('product') }}"><h4>Product</h4></a>
+          </li>
+          <li>
+              <a href="{{ url_for('courier') }}"><h4>Courier</h4></a>
+          </li>
+          <li>
+              <a href="{{ url_for('status') }}"><h4>Status</h4></a>
+          </li>
+      </ul>
+
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+
+          <div class="navbar-header">
+            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+              <i class="glyphicon glyphicon-align-left"></i>
+              <span>Menu</span>
+            </button>
+          </div>
+          <div class="navbar-header">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <h1>Sign Up</h1>
+            </div>
+            <div class="col-md-1"></div>
           </div>
         </div>
+      </nav>
 
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="address">Address</label>
-          <div class="col-md-4">
-            <input id="address" name="address" type="text" placeholder="Enter your address" class="form-control input-md" required="">
+      <div class="container-fluid">
+        <form class="form-horizontal" method="POST" action="">
+          <fieldset>
 
-          </div>
-        </div>
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <h4>Name</h4>
+                <div class="col-md-12">
+                  <input id="name" name="name" type="text" placeholder="Enter your name" class="form-control input-md"
+                    required="">
+                </div>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="email">Email</label>
-          <div class="col-md-4">
-            <input id="email" name="email" type="text" placeholder="Enter you email" class="form-control input-md" required="">
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <h4>Address</h4>
+                <div class="col-md-12">
+                  <input id="address" name="address" type="text" placeholder="Enter your Address"
+                    class="form-control input-md" required="">
+                </div>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
 
-          </div>
-        </div>
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <h4>Email</h4>
+                <div class="col-md-12">
+                  <input id="email" name="email" type="text" placeholder="Enter your email address"
+                    class="form-control input-md" required="">
+                </div>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="phone">Phone No</label>
-          <div class="col-md-4">
-            <input id="phone" name="phone" type="text" placeholder="Enter your phone no" class="form-control input-md" required="">
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <h4>Phone No</h4>
+                <div class="col-md-12">
+                  <input id="phone" name="phone" type="text" placeholder="Enter your phone No"
+                    class="form-control input-md" required="">
+                </div>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
 
-          </div>
-        </div>
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <label class="col-md-4 control-label" for="submit"></label>
+                <div class="col-md-4">
+                  <button type="submit" class="button button1">OK</button>
+                </div>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
 
-        <!-- Button -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="submit"></label>
-          <div class="col-md-4">
-            <button type="submit" class="btn btn-primary">OK</button>
-          </div>
-        </div>
+          </fieldset>
+        </form>
 
-      </fieldset>
-    </form>
-  </div>
-  <div class="col-md-2"></div>
+      </div>
+    </div>
+
+
+
+
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Bootstrap Js CDN -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+          theme: "minimal"
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+          $('#sidebar, #content').toggleClass('active');
+          $('.collapse.in').toggleClass('in');
+          $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+      });
+    </script>
 </body>
+
 </html>
