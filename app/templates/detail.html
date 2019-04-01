@@ -1,89 +1,171 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Collapsible sidebar using Bootstrap 3</title>
+
+    <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <meta charset="utf-8">
-    <title>NODE 5000</title>
+    <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-8">
-                <h1>Details</h1>
-            </div>
-            <div class="col-md-1"></div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <h4>User ID</h4>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        {{ user_id }}
+
+
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h1>Menu</h1>
+            </div>
+
+            <ul class="list-unstyled components">
+                    <li>
+                            <a href="{{ url_for('dashboard') }}"><h4>Dashboard</h4></a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('sign') }}"><h4>Sign Up</h4></a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('product') }}"><h4>Product</h4></a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('courier') }}"><h4>Courier</h4></a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('update') }}"><h4>Update</h4></a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('status') }}"><h4>Status</h4></a>
+                        </li>
+            </ul>
+
+        </nav>
+
+        <!-- Page Content Holder -->
+        <div id="content">
+
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+
+                    <div class="navbar-header">
+                        <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                            <i class="glyphicon glyphicon-align-left"></i>
+                            <span>Menu</span>
+                        </button>
+                    </div>
+                    <div class="navbar-header">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-8">
+                            <h1>Details</h1>
+                        </div>
+                        <div class="col-md-1"></div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-2"></div>
-        </div>
+            </nav>
 
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <h4>Name</h4>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        {{ name }}
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <h4>User Id</h4>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                {{ user }}
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-md-2"></div>
                 </div>
-            </div>
-            <div class="col-md-2"></div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <h4>Address</h4>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        {{ address }}
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <h4>Name</h4>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                {{ name }}
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-md-2"></div>
                 </div>
-            </div>
-            <div class="col-md-2"></div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <h4>Email</h4>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        {{email}}
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <h4>Address</h4>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                {{ address }}
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-md-2"></div>
                 </div>
-            </div>
-            <div class="col-md-2"></div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <h4>Phone NO</h4>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        {{phone}}
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <h4>Email</h4>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                {{ email }}
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-md-2"></div>
                 </div>
+
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <h4>Phoen No</h4>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                {{phone}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+
             </div>
-            <div class="col-md-2"></div>
         </div>
 
-    </div>
+
+
+
+
+        <!-- jQuery CDN -->
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <!-- Bootstrap Js CDN -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#sidebar").mCustomScrollbar({
+                    theme: "minimal"
+                });
+
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar, #content').toggleClass('active');
+                    $('.collapse.in').toggleClass('in');
+                    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+                });
+            });
+        </script>
 </body>
 
 </html>
