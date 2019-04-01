@@ -1,64 +1,155 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
 
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <meta charset="utf-8">
-    <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Collapsible sidebar using Bootstrap 3</title>
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+
 </head>
 
 <body>
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+
+
+
+  <div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h1>Menu</h1>
+      </div>
+
+      <ul class="list-unstyled components">
+          <li>
+              <a href="{{ url_for('dashboard') }}"><h4>Dashboard</h4></a>
+          </li>
+          <li>
+              <a href="{{ url_for('sign') }}"><h4>Sign Up</h4></a>
+          </li>
+          <li>
+              <a href="{{ url_for('product') }}"><h4>Product</h4></a>
+          </li>
+          <li>
+              <a href="{{ url_for('courier') }}"><h4>Courier</h4></a>
+          </li>
+          <li>
+              <a href="{{ url_for('status') }}"><h4>Status</h4></a>
+          </li>
+      </ul>
+
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+
+          <div class="navbar-header">
+            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+              <i class="glyphicon glyphicon-align-left"></i>
+              <span>Menu</span>
+            </button>
+          </div>
+          <div class="navbar-header">
+            <div class="col-md-1"></div>
+            <div class="col-md-8">
+              <h1>Product</h1>
+            </div>
+            <div class="col-md-1"></div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
         <form class="form-horizontal" method="POST" action="">
-            <fieldset>
+          <fieldset>
 
-                <!-- Form Name -->
-                <legend>Fill The Product Details</legend>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="pname">Product Name</label>
-                    <div class="col-md-4">
-                        <input id="pname" name="pname" type="text" placeholder="Enter product name"
-                            class="form-control input-md" required="">
-
-                    </div>
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <h4>Product Name</h4>
+                <div class="col-md-12">
+                  <input id="pname" name="pname" type="text" placeholder="Enter the product name" class="form-control input-md"
+                    required="">
                 </div>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
 
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="amount">Amount</label>
-                    <div class="col-md-4">
-                        <input id="amount" name="amount" type="number" placeholder="Enter amount"
-                            class="form-control input-md" required="">
-
-                    </div>
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <h4>Amount</h4>
+                <div class="col-md-12">
+                  <input id="amount" name="amount" type="text" placeholder="Enter the amount"
+                    class="form-control input-md" required="">
                 </div>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
 
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="quantity">quantity</label>
-                    <div class="col-md-4">
-                        <input id="quantity" name="quantity" type="number" placeholder="Enter quantity"
-                            class="form-control input-md" required="">
-
-                    </div>
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <h4>Quantity</h4>
+                <div class="col-md-12">
+                  <input id="quantity" name="quantity" type="text" placeholder="Enter the total number of product"
+                    class="form-control input-md" required="">
                 </div>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
 
-                <!-- Button -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="submit"></label>
-                    <div class="col-md-4">
-                        <button type="submit" class="btn btn-primary">OK</button>
-                    </div>
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <label class="col-md-4 control-label" for="submit"></label>
+                <div >
+                  <button type="submit" class="button button1">OK</button>
                 </div>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
 
-            </fieldset>
+          </fieldset>
         </form>
+
+      </div>
     </div>
-    <div class="col-md-2"></div>
+
+
+
+
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Bootstrap Js CDN -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+          theme: "minimal"
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+          $('#sidebar, #content').toggleClass('active');
+          $('.collapse.in').toggleClass('in');
+          $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+      });
+    </script>
 </body>
 
 </html>
