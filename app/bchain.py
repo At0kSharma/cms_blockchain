@@ -28,21 +28,7 @@ class Blockchain:
 
     def get_previous_block(self):
         return self.chain[-1]
-
-    def search_block(self,id):
-        length = len(self.chain)
-        i=0
-        while i < length :
-            temp_block=self.chain[i]
-            user_id = temp_block["transactions"][0]["user_id"]
-            if user_id == id:
-                return temp_block
-            else:
-                i=+1
-        return self.chain[-1]    
-
-
-
+    
     def proof_of_work(self, previous_proof):
         new_proof = 1
         check_proof = False
@@ -76,8 +62,8 @@ class Blockchain:
         return True
 
     def add_status(self, courier_id, current_location, status):
-        self.transactions.append({'courier_id': courier_id,
-                                  'current_location': current_location,
+        self.transactions.append({'courier': courier_id,
+                                  'cloc': current_location,
                                   'status': status})
         
         return True
@@ -92,17 +78,18 @@ class Blockchain:
         return True
 
     def product_id(self, product_id, product_name, amount, quantity):
-        self.transactions.append({'product_id': product_id,
+        self.transactions.append({'prod_id': product_id,
                                   'product_name': product_name,
                                   'amount': amount,
                                   'quantity': quantity})
         
         return True
-    def coureir_id(self, courier_id, sender_id, receiver_id, product_id):
+
+    def coureir_id(self, courier_id, sender, receiver, product):
         self.transactions.append({'courier_id': courier_id,
-                                  'sender_id': sender_id,
-                                  'receiver_id': receiver_id,
-                                  'product_id': product_id})
+                                  'sender_id': sender,
+                                  'receiver_id': receiver,
+                                  'product_id': product})
         
         return True
 
@@ -115,7 +102,7 @@ class Blockchain:
         longest_chain = None
         max_length = len(self.chain)
         for node in network:
-            response = requests.get(f'http://{node}/get_chain')
+            response = requests.get(f'http://{node}/get_block')
             if response.status_code == 200:
                 length = response.json()['length']
                 chain = response.json()['chain']

@@ -1,6 +1,7 @@
 from flask import render_template, request, jsonify, url_for, redirect
 from app import app, bchain
 from uuid import uuid4
+import json
 
 blockclass=bchain.Blockchain()
 @app.route('/')
@@ -18,10 +19,15 @@ def dashboard():
 
 @app.route('/get_chain', methods=['GET'])
 def get_chain():
+    blockclass.replace_chain()
+    data=blockclass.chain
+    return render_template('chain.html',data=data), 200
+
+@app.route('/get_block', methods = ['GET'])
+def get_block():
     response = {'chain': blockclass.chain,
                 'length': len(blockclass.chain)}
-    return jsonify(response)
-
+    return jsonify(response), 200
 
 @app.route('/mine_block', methods=['GET'])
 def mine_block():
@@ -58,8 +64,11 @@ def sign_up():
     phone = request.form.get('phone')
     user_id = str(uuid4()).replace('-', '')
     blockclass.sign_up(user_id, name, address, email, phone)
-    return redirect(url_for('mine_block'))
+    return render_template('sign_up_cnf.html',user_id=user_id,name=name,address=address,email=email,phone=phone)
 
+@app.route('/sign_cnf')
+def sign_cnf():
+    return redirect(url_for('mine_block'))
 
 @app.route('/product')
 def product():
@@ -72,12 +81,15 @@ def product_id():
     quantity = request.form.get('quantity')
     product_id = str(uuid4()).replace('-', '')
     blockclass.product_id(product_id, product_name, amount, quantity)
-    return redirect(url_for('mine_block'))
+    return render_template('product_cnf.html',product_id=product_id,pname=product_name,amt=amount,qty=quantity)
 
+@app.route('/product_cnf')
+def product_cnf():
+    return redirect(url_for('mine_block'))
 
 @app.route('/status')
 def status():
-    return render_template('status.html')
+    return render_template('update_status.html')
 
 @app.route('/status', methods=['POST'])
 def add_status():
@@ -87,6 +99,15 @@ def add_status():
     blockclass.add_status(courier_id, current_location, status)
     return redirect(url_for('mine_block'))
 
+@app.route('/track')
+def track():
+    return render_template('track.html')
+
+@app.route('/track', methods=["POST"])
+def tracking():
+    req = request.form.get('data')
+    json=blockclass.chain
+    return render_template('get_stat.html',req_data=req, data=json)
 
 @app.route('/courier')
 def courier():
@@ -94,11 +115,15 @@ def courier():
 
 @app.route('/courier', methods=['POST'])
 def courier_id():
-    sender_id = request.form.get('sender')
-    receiver_id = request.form.get('receiver')
-    product_id = request.form.get('product')
+    sender = request.form.get('sender')
+    receiver = request.form.get('receiver')
+    product = request.form.get('product')
     shipment_id = str(uuid4()).replace('-', '')
-    blockclass.coureir_id(shipment_id, sender_id, receiver_id, product_id)
+    blockclass.coureir_id(shipment_id, sender, receiver, product)
+    return render_template('courier_cnf.html',courier_id=shipment_id,sender=sender,receiver=receiver,product=product)
+
+@app.route('/courier_cnf')
+def courier_cnf():
     return redirect(url_for('mine_block'))
 
 @app.route('/connect_node')
@@ -133,12 +158,7 @@ def search():
 @app.route('/search_data', methods=["POST"])
 def search_data():
     blockclass.replace_chain()
-    name = request.form.get('name')
-    pre_block = blockclass.search_block('name')
-    user_id = pre_block["transactions"][0]["user_id"]
-    name = pre_block["transactions"][0]["name"]
-    address = pre_block["transactions"][0]["address"]
-    email = pre_block["transactions"][0]["email"]
-    phone = pre_block["transactions"][0]["phone"]
-
-    return render_template("detail.html", user_id=user_id, name=name, address=address, email=email, phone=phone)
+    json=blockclass.chain
+    select = request.form.get('data')
+    s_id=request.form.get('select')
+    return render_template("detail.html", select=select, s_id=s_id, data=json)
