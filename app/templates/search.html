@@ -1,44 +1,171 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+    <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <meta charset="utf-8">
-    <title></title>
+    <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+
+
 </head>
 
 <body>
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        <form class="form-horizontal" method="POST" action="">
-            <fieldset>
 
-                <!-- Form Name -->
-                <legend>Sign Up</legend>
 
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="name">User Id</label>
-                    <div class="col-md-4">
-                        <input id="name" name="name" type="text" placeholder="Enter your Id"
-                            class="form-control input-md" required="">
 
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h1>Menu</h1>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="{{ url_for('dashboard') }}">
+                        <h4>Dashboard</h4>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('sign') }}">
+                        <h4>Sign Up</h4>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('product') }}">
+                        <h4>Product</h4>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('courier') }}">
+                        <h4>Courier</h4>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('status') }}">
+                        <h4>Update</h4>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('search') }}">
+                        <h4>Search</h4>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('track') }}">
+                        <h4>Track</h4>
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+
+        <!-- Page Content Holder -->
+        <div id="content">
+
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+
+                    <div class="navbar-header">
+                        <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                            <i class="glyphicon glyphicon-align-left"></i>
+                            <span>Menu</span>
+                        </button>
+                    </div>
+                    <div class="navbar-header">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <h3>Search</h3>
+                        </div>
+                        <div class="col-md-1"></div>
                     </div>
                 </div>
+            </nav>
 
-                <!-- Button -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="submit"></label>
-                    <div class="col-md-4">
-                        <button type="submit" class="btn btn-primary">OK</button>
-                    </div>
-                </div>
+            <div class="container-fluid">
+                <form class="form-horizontal" method="POST" action="">
+                    <fieldset>
 
-            </fieldset>
-        </form>
-    </div>
-    <div class="col-md-2"></div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <h4>Query</h4>
+                                <div class="col-md-12">
+                                    <input id="data" name="data" type="text" placeholder="Enter your search query"
+                                        class="form-control input-md" required="">
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <br>
+                                <h4>What are you searching for!!!</h4>
+                                <div class="col-md-12">
+                                    <div class="custom-select" style="width:200px;">
+                                        <select id="select" name="select">
+                                            <option value="user_id">User Id</option>
+                                            <option value="product_id">Product Id</option>
+                                            <option value="courier_id">Courier Id</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <label class="col-md-4 control-label" for="submit"></label>
+                                <div class="col-md-4">
+                                    <button type="submit" class="button button1">OK</button>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+
+                    </fieldset>
+                </form>
+
+            </div>
+        </div>
+
+
+
+
+
+        <!-- jQuery CDN -->
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <!-- Bootstrap Js CDN -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#sidebar").mCustomScrollbar({
+                    theme: "minimal"
+                });
+
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar, #content').toggleClass('active');
+                    $('.collapse.in').toggleClass('in');
+                    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+                });
+            });
+        </script>
+
 </body>
 
 </html>

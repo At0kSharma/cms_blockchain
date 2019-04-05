@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title></title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
+
 
 </head>
 
@@ -49,7 +49,7 @@
                 </li>
                 <li>
                     <a href="{{ url_for('status') }}">
-                        <h4>Update</h4>
+                        <h4>Updata</h4>
                     </a>
                 </li>
                 <li>
@@ -80,31 +80,22 @@
                     </div>
                     <div class="navbar-header">
                         <div class="col-md-1"></div>
-                        <div class="col-md-8">
-                            <h3>Dashboard</h3>
+                        <div class="col-md-10">
+                            <h3>Sign Up Confirmation</h3>
                         </div>
                         <div class="col-md-1"></div>
                     </div>
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="{{ url_for('get_chain') }}">
-                                    <h3>Get Chain</h3>
-                            </li>
-                        </ul>
-                    </div>
-
                 </div>
             </nav>
 
             <div class="container-fluid">
-
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-8">
-                        <h4>Block Size</h4>
+                        <h4>User Id</h4>
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                {{ length_data }}
+                                {{ user_id }}
                             </div>
                         </div>
                     </div>
@@ -114,10 +105,10 @@
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-8">
-                        <h4>Proof</h4>
+                        <h4>Name</h4>
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                {{ proof }}
+                                {{ name }}
                             </div>
                         </div>
                     </div>
@@ -127,10 +118,10 @@
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-8">
-                        <h4>Hash</h4>
+                        <h4>Address</h4>
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                {{ hash }}
+                                {{ address }}
                             </div>
                         </div>
                     </div>
@@ -140,44 +131,71 @@
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-8">
-                        <h4>Timestamp</h4>
+                        <h4>Email</h4>
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                {{time}}
+                                {{email}}
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2"></div>
                 </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <h4>Phone No</h4>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                {{phone}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <label class="col-md-4 control-label" for="submit"></label>
+                        <div class="col-md-4">
+                            <a href="{{ url_for('sign_cnf') }}" style="
+                            background-color: #4d6bf2;
+                            color: white;
+                            padding: 10px 20px;
+                            text-align: center;
+                            text-decoration: none;
+                            display: inline-block;" >Confirm</a>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+
             </div>
         </div>
-    </div>
 
 
 
+        <!-- jQuery CDN -->
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <!-- Bootstrap Js CDN -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#sidebar").mCustomScrollbar({
+                    theme: "minimal"
+                });
 
-    <!-- jQuery CDN -->
-    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <!-- Bootstrap Js CDN -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- jQuery Custom Scroller CDN -->
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#sidebar").mCustomScrollbar({
-                theme: "minimal"
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar, #content').toggleClass('active');
+                    $('.collapse.in').toggleClass('in');
+                    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+                });
             });
-
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar, #content').toggleClass('active');
-                $('.collapse.in').toggleClass('in');
-                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-            });
-        });
-    </script>
+        </script>
 </body>
 
 </html>

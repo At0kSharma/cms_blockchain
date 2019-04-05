@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Collapsible sidebar using Bootstrap 3</title>
 
   <!-- Bootstrap CSS CDN -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -27,21 +26,41 @@
       </div>
 
       <ul class="list-unstyled components">
-          <li>
-              <a href="{{ url_for('dashboard') }}"><h4>Dashboard</h4></a>
-          </li>
-          <li>
-              <a href="{{ url_for('sign') }}"><h4>Sign Up</h4></a>
-          </li>
-          <li>
-              <a href="{{ url_for('product') }}"><h4>Product</h4></a>
-          </li>
-          <li>
-              <a href="{{ url_for('courier') }}"><h4>Courier</h4></a>
-          </li>
-          <li>
-              <a href="{{ url_for('status') }}"><h4>Status</h4></a>
-          </li>
+        <li>
+          <a href="{{ url_for('dashboard') }}">
+            <h4>Dashboard</h4>
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('sign') }}">
+            <h4>Sign Up</h4>
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('product') }}">
+            <h4>Product</h4>
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('courier') }}">
+            <h4>Courier</h4>
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('status') }}">
+            <h4>Update</h4>
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('search') }}">
+            <h4>Search</h4>
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('track') }}">
+            <h4>Track</h4>
+          </a>
+        </li>
       </ul>
 
     </nav>
@@ -61,7 +80,7 @@
           <div class="navbar-header">
             <div class="col-md-1"></div>
             <div class="col-md-10">
-              <h1>Start Courier</h1>
+              <h3>Start Courier</h3>
             </div>
             <div class="col-md-1"></div>
           </div>
@@ -77,8 +96,8 @@
               <div class="col-md-8">
                 <h4>Sender Id</h4>
                 <div class="col-md-12">
-                  <input id="sender" name="sender" type="text" placeholder="Enter the sender id" class="form-control input-md"
-                    required="">
+                  <input id="sender" name="sender" type="text" placeholder="Enter the sender id"
+                    class="form-control input-md" required="">
                 </div>
               </div>
               <div class="col-md-2"></div>
@@ -112,7 +131,7 @@
               <div class="col-md-2"></div>
               <div class="col-md-8">
                 <label class="col-md-4 control-label" for="submit"></label>
-                <div >
+                <div>
                   <button type="submit" class="button button1">OK</button>
                 </div>
               </div>
