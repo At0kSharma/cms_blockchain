@@ -81,7 +81,9 @@
                     <div class="navbar-header">
                         <div class="col-md-1"></div>
                         <div class="col-md-8">
-                            <h3>Dashboard</h3>
+                            <a href="{{ url_for('connect') }}">
+                                <h3>Dashboard</h3>
+                            </a>
                         </div>
                         <div class="col-md-1"></div>
                     </div>
@@ -116,7 +118,7 @@
                     <div class="col-md-8">
                         <h4>Proof</h4>
                         <div class="panel panel-default">
-                            <div class="panel-body">
+                            <div class="panel-body" >
                                 {{ proof }}
                             </div>
                         </div>
@@ -129,7 +131,7 @@
                     <div class="col-md-8">
                         <h4>Hash</h4>
                         <div class="panel panel-default">
-                            <div class="panel-body">
+                            <div class="panel-body" style="word-break:break-all">
                                 {{ hash }}
                             </div>
                         </div>
