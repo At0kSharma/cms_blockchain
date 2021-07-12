@@ -2,3 +2,5 @@
 <p>This project is done using python with Flask Framework</p>
 <p>Bootstrap is used for the front end</p>
 <p>Blockchain technology is used for database</p>
+<br>
+*note this project is just for learning and understanding Blockchain
