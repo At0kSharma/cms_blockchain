@@ -35,7 +35,7 @@ The Flask Blockchain Dashboard is designed to provide users with a blockchain-ba
 
 ## Screenshots
 ![Screenshot 1](screenshots/views.3.png)
-![Screenshot 1](screenshots/CMS.6.png)
+![Screenshot 1](screenshots/cms.6.png)
 ![Screenshot 1](screenshots/views.5.png)
 ![Screenshot 1](screenshots/views.6.png)
 ![Screenshot 1](screenshots/views.6.png)
