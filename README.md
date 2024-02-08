@@ -7,6 +7,7 @@ This is a Flask web application that implements a blockchain-based dashboard for
 - [Introduction](#introduction)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
+- [Screenshots](#screenshots)
 - [Setup](#setup)
 - [Usage](#usage)
 - [Endpoints](#endpoints)
@@ -31,6 +32,21 @@ The Flask Blockchain Dashboard is designed to provide users with a blockchain-ba
 - Flask: Web framework for Python
 - HTML/CSS/JavaScript: Frontend development
 - Blockchain: Implementation of blockchain for data security and transparency
+
+## Screenshots
+![Screenshot 1](screenshots/views.3.png)
+![Screenshot 1](screenshots/CMS.6.png)
+![Screenshot 1](screenshots/views.5.png)
+![Screenshot 1](screenshots/views.6.png)
+![Screenshot 1](screenshots/views.6.png)
+![Screenshot 1](screenshots/cms.1.png)
+![Screenshot 1](screenshots/cms.3.png)
+![Screenshot 1](screenshots/cms.4.png)
+![Screenshot 1](screenshots/cms.5.png)
+![Screenshot 1](screenshots/cms.8.png)
+![Screenshot 1](screenshots/Settings.1.png)
+![Screenshot 1](screenshots/views.1.png)
+
 
 ## Setup
 
