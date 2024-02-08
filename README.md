@@ -87,7 +87,7 @@ The Flask application provides the following endpoints:
 Contributing
 ------------
 
-Contributions are welcome! Please follow the guidelines outlined in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+Contributions are welcome!
 
 License
 -------
