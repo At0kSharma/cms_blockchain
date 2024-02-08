@@ -1,6 +1,6 @@
 # Courier Management System on Blockchain
 
-This is a Flask web application that implements a blockchain-based dashboard for managing various functionalities related to signing up users, managing products, updating status, tracking, and managing couriers. All data is stored on the blockchain itself for secure and transparent data management.
+This is a Flask web application that implements a blockchain-based Courier Management System(CMS) for managing various functionalities related to signing up users, managing products, updating status, tracking, and managing couriers. All data is stored on the blockchain itself for secure and transparent data management.
 
 ## Table of Contents
 
@@ -16,7 +16,7 @@ This is a Flask web application that implements a blockchain-based dashboard for
 
 ## Introduction
 
-The Flask Blockchain Dashboard is designed to provide users with a blockchain-based dashboard to manage various tasks such as signing up users, managing products, updating status, tracking shipments, and managing couriers. The application utilizes blockchain technology for data storage, ensuring security and transparency.
+The Flask CMS is designed to provide users with a blockchain-based dashboard to manage various tasks such as signing up users, managing products, updating status, tracking shipments, and managing couriers. The application utilizes blockchain technology for data storage, ensuring security and transparency.
 
 ## Features
 
